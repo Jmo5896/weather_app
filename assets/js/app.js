@@ -3,12 +3,18 @@ $(document).ready(() => {
     let cities = []
 
     function dailyWeather(city) {
-        console.log(city);
+        const url = `http://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=${city}&units=imperial`
+        $.get(url, function(data){
+            console.log(data)
+          });
 
     }
 
     function fiveDay(city) {
-        console.log(city);
+        const url = `http://api.openweathermap.org/data/2.5/forecast?APPID=${API_KEY}&q=${city}&units=imperial`
+        $.get(url, function(data){
+            console.log(data)
+          });
     }
 
     $('#submit-btn').on('click', function (event) {
