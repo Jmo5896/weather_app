@@ -23,11 +23,13 @@ $(document).ready(() => {
     function fiveDay(city) {
         const url = `http://api.openweathermap.org/data/2.5/forecast?APPID=${API_KEY}&q=${city}&units=imperial`
         $.get(url, function(data){
-            let forecast =[];
-            for (let i = 0; i < data.list.length;i+=7){
-                forecast.push(data.list[i]);
-            }
-            console.log(forecast);
+            const days = data.list            
+            let myDays = days.map(obj =>{
+                const curTime = moment(obj.dt, "X").format("MM-DD-YYYY");
+                obj.dt = curTime;
+                return obj;               
+            });
+            console.log(myDays)
           });
     }
 
