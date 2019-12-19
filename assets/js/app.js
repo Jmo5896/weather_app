@@ -6,6 +6,16 @@ $(document).ready(() => {
         const url = `http://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=${city}&units=imperial`
         $.get(url, function(data){
             console.log(data)
+            const weather = {
+                Name: data.name, 
+                Temperature: data.main.temp,
+                Humidity: data.main.humidity,
+                Overcast: data.weather[0].description
+            };
+            
+            for (let key in weather) {
+                let item = $('#dailyWeather').append(`<li>${key}: ${weather[key]}</li>`);
+            }
           });
 
     }
